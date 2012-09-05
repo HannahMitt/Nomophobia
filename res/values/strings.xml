@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World!</string>
     <string name="app_name">PhoneAddictWidget</string>
+    <string name="since_your_last_phone_check">since you last checked your phone</string>
 
 </resources>

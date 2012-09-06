@@ -9,35 +9,38 @@ import android.widget.RemoteViews;
 
 public class PhoneAddictWidget extends AppWidgetProvider {
 
-	private static long previousTimeInMillis = System.currentTimeMillis();
+	private static long screenOffTimeInMillis = System.currentTimeMillis();
 
-	private RemoteViews widgetViews;
-	private ComponentName widgetName;
+	@Override
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+		super.onUpdate(context, appWidgetManager, appWidgetIds);
+
+		Intent intent = new Intent(context.getApplicationContext(), ScreenDetectionService.class);
+		context.startService(intent);
+	}
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
-		onUpdate(context, AppWidgetManager.getInstance(context), null);
+
+		if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+			screenOffTimeInMillis = System.currentTimeMillis();
+		} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+			updateWidget(context);
+		}
 	}
 
-	@Override
-	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-			int[] appWidgetIds) {
-		super.onUpdate(context, appWidgetManager, appWidgetIds);
+	private void updateWidget(Context context) {
+		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+		ComponentName widgetName = new ComponentName(context, PhoneAddictWidget.class);
 
-		widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-		widgetName = new ComponentName(context, PhoneAddictWidget.class);
+		long timeDiffInMillis = System.currentTimeMillis() - screenOffTimeInMillis;
 
-		long currentTimeInMillis = System.currentTimeMillis();
-		long timeDiffInMillis = currentTimeInMillis - previousTimeInMillis;
-		previousTimeInMillis = currentTimeInMillis;
-
-		widgetViews.setTextViewText(R.id.time_since_check,
-				formatTime(timeDiffInMillis));
-		appWidgetManager.updateAppWidget(widgetName, widgetViews);
+		widgetViews.setTextViewText(R.id.time_since_check, formatTime(context, timeDiffInMillis));
+		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
 	}
 
-	private String formatTime(long timeDiffInMillis) {
+	private String formatTime(Context context, long timeDiffInMillis) {
 		String formattedTime;
 
 		int seconds = (int) (timeDiffInMillis / 1000);
@@ -46,13 +49,13 @@ public class PhoneAddictWidget extends AppWidgetProvider {
 		int days = hours / 24;
 
 		if (days > 0) {
-			formattedTime = days + " days";
+			formattedTime = context.getResources().getQuantityString(R.plurals.day, days, days);
 		} else if (hours > 0) {
-			formattedTime = hours + " hours";
+			formattedTime = context.getResources().getQuantityString(R.plurals.hour, hours, hours);
 		} else if (minutes > 0) {
-			formattedTime = minutes + " minutes";
+			formattedTime = context.getResources().getQuantityString(R.plurals.minute, minutes, minutes);
 		} else {
-			formattedTime = seconds + " seconds";
+			formattedTime = context.getResources().getQuantityString(R.plurals.second, seconds, seconds);
 		}
 
 		return formattedTime;

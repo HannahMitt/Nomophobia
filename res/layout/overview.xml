@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overview_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -36,9 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
+            android:text="@string/with_an_average_time_between_checking_of"
             android:textSize="20sp"
-            android:textStyle="italic"
-            android:text="@string/with_an_average_time_between_checking_of" />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/average_check_time"
@@ -47,10 +48,5 @@
             android:layout_height="wrap_content"
             android:gravity="center" />
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/durations_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </LinearLayout>

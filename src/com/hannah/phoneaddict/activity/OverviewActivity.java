@@ -2,18 +2,22 @@ package com.hannah.phoneaddict.activity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentProviderClient;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hannah.phoneaddict.R;
 import com.hannah.phoneaddict.provider.DurationsContentProvider;
 import com.hannah.phoneaddict.utility.TimeFomatUtility;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphView.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
 
 public class OverviewActivity extends Activity {
 
@@ -30,21 +34,18 @@ public class OverviewActivity extends Activity {
 		String averageCheckTime = TimeFomatUtility.formatTime(this, averageIgnoreDurationInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY));
 		((TextView) findViewById(R.id.average_check_time)).setText(averageCheckTime);
 
-		ListView listView = (ListView) findViewById(R.id.durations_list);
-
-		Cursor cursor = getContentResolver().query(DurationsContentProvider.Contract.CONTENT_URI, null, null, null, null);
-		SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.duration_cell, cursor, new String[] { DurationsContentProvider.Contract.Columns.DURATION },
-				new int[] { R.id.duration_text });
-
-		listView.setAdapter(simpleCursorAdapter);
+		showGraph();
 	}
 
 	private int phoneChecksInTimePeriod(long timePeriod) {
+		return cursorForTimePeriod(timePeriod).getCount();
+	}
+	
+	private Cursor cursorForTimePeriod(long timePeriod) {
 		String selectionTime = String.valueOf(System.currentTimeMillis() - timePeriod);
 		String selection = DurationsContentProvider.Contract.Columns.TIME + " > ?";
 
-		Cursor cursor = getContentResolver().query(DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[] { selectionTime }, null);
-		return cursor.getCount();
+		return getContentResolver().query(DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[] { selectionTime }, null);
 	}
 
 	private double averageIgnoreDurationInTimePeriod(long timePeriod) {
@@ -55,5 +56,29 @@ public class OverviewActivity extends Activity {
 		double sumColumn = durationsContentProvider.sumColumn(DurationsContentProvider.Contract.Columns.DURATION, whereClause);
 
 		return sumColumn / phoneChecksInTimePeriod(timePeriod);
+	}
+
+	private void showGraph() {
+		ArrayList<GraphViewData> graphData = new ArrayList<GraphView.GraphViewData>();
+		
+		Cursor dataCursor = cursorForTimePeriod(6 * 60 * 60 * 1000);
+		dataCursor.moveToFirst();
+		
+		double x;
+		double y;
+		
+		while(dataCursor.moveToNext()){
+			x = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_TIME) / 1000) / 60.0;
+			y = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_DURATION) / 1000) / 60.0;
+			graphData.add(new GraphViewData(x, y));
+		}
+		
+		GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
+
+		GraphView graphView = new LineGraphView(this, "Phone Addiction Graph");
+		graphView.addSeries(exampleSeries);
+
+		LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
+		layout.addView(graphView);
 	}
 }

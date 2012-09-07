@@ -14,11 +14,11 @@ import android.util.Log;
 
 public class DurationsContentProvider extends ContentProvider {
 
-	private static final String TAG = DurationsContentProvider.class.getSimpleName();
+	public static final String AUTHORITY = "com.hannah.phoneaddict.provider.durations";
+
 	private DatabaseHelper mDatabaseHelper;
 
 	private static final String SCHEME = "content://";
-	private static final String AUTHORITY = "com.hannah.phoneaddict.provider.durations";
 	private static final String PATH_RESULTS = "/durations";
 
 	private static final String TYPE_DURATIONS_STRING = "vnd.android.cursor.dir/" + AUTHORITY + ".duration";
@@ -117,7 +117,7 @@ public class DurationsContentProvider extends ContentProvider {
 			db.setTransactionSuccessful();
 
 		} catch (SQLException e) {
-			Log.e(TAG, "bulkInsert(..) e: " + e);
+			Log.e("ContentProvider", "bulkInsert(..) e: " + e);
 
 		} finally {
 			db.endTransaction();
@@ -154,5 +154,15 @@ public class DurationsContentProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 		return mDatabaseHelper.getReadableDatabase().update(DatabaseHelper.TABLE_NAME, values, selection, selectionArgs);
+	}
+
+	public long sumColumn(String column, String whereClause) {
+		Cursor cursor = mDatabaseHelper.getReadableDatabase().rawQuery("SELECT SUM(" + column + ") as sum FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + whereClause, null);
+		cursor.moveToFirst();
+		long sum = cursor.getLong(0);
+		cursor.close();
+		cursor.deactivate();
+
+		return sum;
 	}
 }

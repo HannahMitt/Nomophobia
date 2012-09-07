@@ -5,5 +5,9 @@
     <string name="you_lasted">You lasted</string>
     <string name="since_your_last_phone_check">since checking your phone</string>
     <string name="addiction_overview">Addiction Overview</string>
+    <string name="you_checked_your_phone">You checked your phone</string>
+    <string name="times">times</string>
+    <string name="in_the_last_24_hours">in the last 24 hours</string>
+    <string name="with_an_average_time_between_checking_of">with an average time between checks of</string>
 
 </resources>

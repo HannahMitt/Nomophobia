@@ -5,4 +5,13 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">13sp</item>
     </style>
+    <style name="small_overview_text" parent="android:Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="highlight_overview_text" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/time_color</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

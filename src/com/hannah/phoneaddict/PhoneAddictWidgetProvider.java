@@ -1,5 +1,6 @@
 package com.hannah.phoneaddict;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -16,8 +17,24 @@ public class PhoneAddictWidgetProvider extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 
-		Intent intent = new Intent(context.getApplicationContext(), ScreenDetectionService.class);
-		context.startService(intent);
+		startScreenDetectionService(context);
+		addOnClickIntent(context);
+	}
+
+	private void startScreenDetectionService(Context context) {
+		Intent serviceIntent = new Intent(context.getApplicationContext(), ScreenDetectionService.class);
+		context.startService(serviceIntent);
+	}
+	
+	private void addOnClickIntent(Context context) {
+		Intent overviewIntent = new Intent(context, OverviewActivity.class);
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, overviewIntent, 0);
+		
+		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+		ComponentName widgetName = new ComponentName(context, PhoneAddictWidgetProvider.class);
+		
+		widgetViews.setOnClickPendingIntent(R.id.wiget_layout, pendingIntent);
+		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
 	}
 
 	@Override

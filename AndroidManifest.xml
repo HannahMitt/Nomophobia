@@ -30,6 +30,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/addict_widget_provider" />
         </receiver>
+
+        <activity android:name=".OverviewActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,9 +9,9 @@ import com.hannah.phoneaddict.R;
 
 public class TimeFomatUtility {
 
-	public static final long MILLIS_IN_A_DAY = 24 * 60 * 60 * 1000;
-
-	private static final NumberFormat averageDoubleFormat = new DecimalFormat("###,###,###.##");
+	public static final long MILLIS_IN_AN_HOUR = 60 * 60 * 1000;
+	public static final long MILLIS_IN_A_DAY = 24 * MILLIS_IN_AN_HOUR;
+	public static final NumberFormat AVERAGE_DOUBLE_FORMAT = new DecimalFormat("###,###,###.##");
 
 	public static String formatTime(Context context, long timeDiffInMillis) {
 		String formattedTime;
@@ -43,13 +43,13 @@ public class TimeFomatUtility {
 		double days = hours / 24;
 
 		if (minutes < 1) {
-			formattedTime = averageDoubleFormat.format(seconds) + " seconds";
+			formattedTime = AVERAGE_DOUBLE_FORMAT.format(seconds) + " seconds";
 		} else if (hours < 1) {
-			formattedTime = averageDoubleFormat.format(minutes) + " minutes";
+			formattedTime = AVERAGE_DOUBLE_FORMAT.format(minutes) + " minutes";
 		} else if (days < 1) {
-			formattedTime = averageDoubleFormat.format(hours) + " hours";
+			formattedTime = AVERAGE_DOUBLE_FORMAT.format(hours) + " hours";
 		} else {
-			formattedTime = averageDoubleFormat.format(days) + " days";
+			formattedTime = AVERAGE_DOUBLE_FORMAT.format(days) + " days";
 		}
 
 		return formattedTime;

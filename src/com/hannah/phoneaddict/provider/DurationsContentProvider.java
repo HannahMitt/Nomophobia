@@ -23,7 +23,7 @@ public class DurationsContentProvider extends ContentProvider {
 
 	private static final String TYPE_DURATIONS_STRING = "vnd.android.cursor.dir/" + AUTHORITY + ".duration";
 
-	private static final String DEFAULT_SORT_ORDER = Contract.Columns.TIME + " DESC";
+	private static final String DEFAULT_SORT_ORDER = Contract.Columns.TIME + " ASC";
 
 	public static final class Contract {
 		public static final Uri CONTENT_URI = Uri.parse(SCHEME + AUTHORITY + PATH_RESULTS);

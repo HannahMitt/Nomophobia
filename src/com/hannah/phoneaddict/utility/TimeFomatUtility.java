@@ -6,6 +6,8 @@ import com.hannah.phoneaddict.R;
 
 public class TimeFomatUtility {
 
+	public static final long MILLIS_IN_A_DAY = 24 * 60 * 60 * 1000;
+	
 	public static String formatTime(Context context, long timeDiffInMillis) {
 		String formattedTime;
 

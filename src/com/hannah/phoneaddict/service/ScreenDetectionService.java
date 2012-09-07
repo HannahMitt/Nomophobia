@@ -1,4 +1,6 @@
-package com.hannah.phoneaddict;
+package com.hannah.phoneaddict.service;
+
+import com.hannah.phoneaddict.provider.PhoneAddictWidgetProvider;
 
 import android.app.Service;
 import android.content.Intent;

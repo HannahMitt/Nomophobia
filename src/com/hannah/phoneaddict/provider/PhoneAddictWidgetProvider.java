@@ -1,4 +1,4 @@
-package com.hannah.phoneaddict;
+package com.hannah.phoneaddict.provider;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,6 +8,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+
+import com.hannah.phoneaddict.R;
+import com.hannah.phoneaddict.activity.OverviewActivity;
+import com.hannah.phoneaddict.service.ScreenDetectionService;
+import com.hannah.phoneaddict.utility.TimeFomatUtility;
 
 public class PhoneAddictWidgetProvider extends AppWidgetProvider {
 
@@ -63,28 +68,7 @@ public class PhoneAddictWidgetProvider extends AppWidgetProvider {
 			context.getContentResolver().insert(DurationsContentProvider.Contract.CONTENT_URI, durationValues);
 		}
 		
-		widgetViews.setTextViewText(R.id.time_since_check, formatTime(context, timeDiffInMillis));
+		widgetViews.setTextViewText(R.id.time_since_check, TimeFomatUtility.formatTime(context, timeDiffInMillis));
 		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
-	}
-
-	private String formatTime(Context context, long timeDiffInMillis) {
-		String formattedTime;
-
-		int seconds = (int) (timeDiffInMillis / 1000);
-		int minutes = seconds / 60;
-		int hours = minutes / 60;
-		int days = hours / 24;
-
-		if (days > 0) {
-			formattedTime = context.getResources().getQuantityString(R.plurals.day, days, days);
-		} else if (hours > 0) {
-			formattedTime = context.getResources().getQuantityString(R.plurals.hour, hours, hours);
-		} else if (minutes > 0) {
-			formattedTime = context.getResources().getQuantityString(R.plurals.minute, minutes, minutes);
-		} else {
-			formattedTime = context.getResources().getQuantityString(R.plurals.second, seconds, seconds);
-		}
-
-		return formattedTime;
 	}
 }

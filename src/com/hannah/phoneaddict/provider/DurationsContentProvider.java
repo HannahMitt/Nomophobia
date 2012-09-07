@@ -1,4 +1,4 @@
-package com.hannah.phoneaddict;
+package com.hannah.phoneaddict.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -23,7 +23,7 @@ public class DurationsContentProvider extends ContentProvider {
 
 	private static final String TYPE_DURATIONS_STRING = "vnd.android.cursor.dir/" + AUTHORITY + ".duration";
 
-	private static final String DEFAULT_SORT_ORDER = Contract.Columns.TIME + " ASC";
+	private static final String DEFAULT_SORT_ORDER = Contract.Columns.TIME + " DESC";
 
 	public static final class Contract {
 		public static final Uri CONTENT_URI = Uri.parse(SCHEME + AUTHORITY + PATH_RESULTS);

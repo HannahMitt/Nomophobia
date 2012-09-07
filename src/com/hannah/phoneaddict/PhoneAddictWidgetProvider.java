@@ -3,11 +3,12 @@ package com.hannah.phoneaddict;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-public class PhoneAddictWidget extends AppWidgetProvider {
+public class PhoneAddictWidgetProvider extends AppWidgetProvider {
 
 	private static long screenOffTimeInMillis = System.currentTimeMillis();
 
@@ -32,10 +33,19 @@ public class PhoneAddictWidget extends AppWidgetProvider {
 
 	private void updateWidget(Context context) {
 		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-		ComponentName widgetName = new ComponentName(context, PhoneAddictWidget.class);
+		ComponentName widgetName = new ComponentName(context, PhoneAddictWidgetProvider.class);
 
-		long timeDiffInMillis = System.currentTimeMillis() - screenOffTimeInMillis;
+		long currentTimeInMillis = System.currentTimeMillis();
+		long timeDiffInMillis = currentTimeInMillis - screenOffTimeInMillis;
 
+		if(timeDiffInMillis > 0){
+			ContentValues durationValues = new ContentValues();
+			durationValues.put(DurationsContentProvider.Contract.Columns.DURATION, timeDiffInMillis);
+			durationValues.put(DurationsContentProvider.Contract.Columns.TIME, currentTimeInMillis);
+			
+			context.getContentResolver().insert(DurationsContentProvider.Contract.CONTENT_URI, durationValues);
+		}
+		
 		widgetViews.setTextViewText(R.id.time_since_check, formatTime(context, timeDiffInMillis));
 		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
 	}

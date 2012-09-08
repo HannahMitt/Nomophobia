@@ -9,8 +9,12 @@ import com.hannah.phoneaddict.R;
 
 public class TimeFomatUtility {
 
-	public static final long MILLIS_IN_AN_HOUR = 60 * 60 * 1000;
+	private static final long MILLIS_IN_A_MINUTE = 60 * 1000;
+	private static final long MILLIS_IN_AN_HOUR = 60 * MILLIS_IN_A_MINUTE;
+	
 	public static final long MILLIS_IN_A_DAY = 24 * MILLIS_IN_AN_HOUR;
+	public static final long MILLIS_IN_6_HOURS = 6 * MILLIS_IN_AN_HOUR;
+	
 	public static final NumberFormat AVERAGE_DOUBLE_FORMAT = new DecimalFormat("###,###,###.##");
 
 	public static String formatTime(Context context, long timeDiffInMillis) {
@@ -53,5 +57,12 @@ public class TimeFomatUtility {
 		}
 
 		return formattedTime;
+	}
+	
+	public static String displayHoursAgoToQuarterHour(double dateMillis){
+		double fractionalHours = (dateMillis / MILLIS_IN_AN_HOUR) * 10.0;
+		double hours = Math.round(fractionalHours) / 10.0;
+		
+		return AVERAGE_DOUBLE_FORMAT.format(hours) + " hrs ago";
 	}
 }

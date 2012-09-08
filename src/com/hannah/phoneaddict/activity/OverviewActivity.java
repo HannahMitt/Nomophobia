@@ -35,7 +35,7 @@ public class OverviewActivity extends Activity {
 		String averageCheckTime = TimeFomatUtility.formatTime(this, averageIgnoreDurationInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY));
 		((TextView) findViewById(R.id.average_check_time)).setText(averageCheckTime);
 
-		showGraph();
+		showGraph(TimeFomatUtility.MILLIS_IN_6_HOURS);
 	}
 
 	private int phoneChecksInTimePeriod(long timePeriod) {
@@ -59,13 +59,10 @@ public class OverviewActivity extends Activity {
 		return sumColumn / phoneChecksInTimePeriod(timePeriod);
 	}
 
-	private void showGraph() {
-		long timePeriod = 6 * 60 * 60 * 1000;
-
+	private void showGraph(long graphTimePeriod) {
 		ArrayList<GraphViewData> graphData = new ArrayList<GraphView.GraphViewData>();
-		graphData.add(new GraphViewData((mCurrentTimeInMillis - timePeriod), 0));
 
-		Cursor dataCursor = cursorForTimePeriod(timePeriod);
+		Cursor dataCursor = cursorForTimePeriod(graphTimePeriod);
 		dataCursor.moveToFirst();
 
 		double x;
@@ -77,8 +74,6 @@ public class OverviewActivity extends Activity {
 			graphData.add(new GraphViewData(x, y));
 		}
 
-		graphData.add(new GraphViewData(mCurrentTimeInMillis, 0));
-
 		GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
 
 		GraphView graphView = new LineGraphView(this, "Phone Addiction Over Time") {
@@ -86,7 +81,7 @@ public class OverviewActivity extends Activity {
 			@Override
 			protected String formatLabel(double value, boolean isValueX) {
 				if (isValueX) {
-					return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format((mCurrentTimeInMillis - value) / TimeFomatUtility.MILLIS_IN_AN_HOUR) + " hrs ago";
+					return TimeFomatUtility.displayHoursAgoToQuarterHour(mCurrentTimeInMillis - value);
 				} else {
 					return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(value) + " m";
 				}

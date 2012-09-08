@@ -66,11 +66,10 @@ public class OverviewActivity extends Activity {
 	private void showGraph(long graphTimePeriod) {
 		ArrayList<GraphViewData> graphData = new ArrayList<GraphView.GraphViewData>();
 
-		Cursor dataCursor = cursorForTimePeriod(graphTimePeriod);
-		dataCursor.moveToFirst();
-
 		double x;
 		double y;
+
+		Cursor dataCursor = cursorForTimePeriod(graphTimePeriod);
 
 		while (dataCursor.moveToNext()) {
 			x = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_TIME));
@@ -78,7 +77,7 @@ public class OverviewActivity extends Activity {
 			graphData.add(new GraphViewData(x, y));
 		}
 
-		if (graphData.size() > 0) {
+		if (graphData.size() > 1) {
 
 			GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
 
@@ -103,7 +102,9 @@ public class OverviewActivity extends Activity {
 				protected double getMaxY() {
 					double viewPortMax = super.getMaxY();
 
-					if (viewPortMax < 4) {
+					if(viewPortMax < 2){
+						return 2;
+					} else if (viewPortMax < 4) {
 						return 4;
 					} else if (viewPortMax < 20) {
 						return 20;

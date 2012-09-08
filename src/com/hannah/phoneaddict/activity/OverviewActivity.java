@@ -20,22 +20,26 @@ import com.jjoe64.graphview.LineGraphView;
 public class OverviewActivity extends Activity {
 
 	private long mCurrentTimeInMillis;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
 
-		//Use the current time at creation
+		// Use the current time at creation
 		mCurrentTimeInMillis = System.currentTimeMillis();
-		
-		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(phoneChecksInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY)) + " " + getString(R.string.times);
+
+		setTextFields();
+		showGraph(TimeFomatUtility.MILLIS_IN_12_HOURS);
+	}
+
+	private void setTextFields() {
+		int phoneChecks = phoneChecksInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY);
+		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(phoneChecks) + " " + getResources().getQuantityString(R.plurals.time, phoneChecks);
 		((TextView) findViewById(R.id.checks_in_timeperiod)).setText(checksIn24Hours);
 
 		String averageCheckTime = TimeFomatUtility.formatTime(this, averageIgnoreDurationInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY));
 		((TextView) findViewById(R.id.average_check_time)).setText(averageCheckTime);
-
-		showGraph(TimeFomatUtility.MILLIS_IN_6_HOURS);
 	}
 
 	private int phoneChecksInTimePeriod(long timePeriod) {
@@ -74,26 +78,50 @@ public class OverviewActivity extends Activity {
 			graphData.add(new GraphViewData(x, y));
 		}
 
-		GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
+		if (graphData.size() > 0) {
 
-		GraphView graphView = new LineGraphView(this, "Phone Addiction Over Time") {
+			GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
 
-			@Override
-			protected String formatLabel(double value, boolean isValueX) {
-				if (isValueX) {
-					return TimeFomatUtility.displayHoursAgoToQuarterHour(mCurrentTimeInMillis - value);
-				} else {
-					return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(value) + " m";
+			GraphView graphView = new LineGraphView(this, "Phone Addiction Over Time") {
+
+				@Override
+				protected String formatLabel(double value, boolean isValueX) {
+					if (isValueX) {
+						double timeAgoInMillis = mCurrentTimeInMillis - value;
+
+						if ((mCurrentTimeInMillis - getMinX(false)) < TimeFomatUtility.MILLIS_IN_AN_HOUR) {
+							return TimeFomatUtility.displayMinutesAgoToTheMinute(timeAgoInMillis);
+						} else {
+							return TimeFomatUtility.displayHoursAgoToQuarterHour(timeAgoInMillis);
+						}
+					} else {
+						return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(value) + " m";
+					}
 				}
-			}
-		};
-		
-		graphView.addSeries(exampleSeries);
-//		graphView.setViewPort(mCurrentTimeInMillis - timePeriod, mCurrentTimeInMillis);
-//		graphView.setScrollable(true);
-//		graphView.setScalable(true);
 
-		LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
-		layout.addView(graphView);
+				@Override
+				protected double getMaxY() {
+					double viewPortMax = super.getMaxY();
+
+					if (viewPortMax < 4) {
+						return 4;
+					} else if (viewPortMax < 20) {
+						return 20;
+					} else {
+						return 60;
+					}
+				}
+
+			};
+
+			graphView.addSeries(exampleSeries);
+			// graphView.setViewPort(mCurrentTimeInMillis - graphTimePeriod,
+			// graphData.size());
+			// graphView.setScrollable(true);
+			// graphView.setScalable(true);
+
+			LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
+			layout.addView(graphView);
+		}
 	}
 }

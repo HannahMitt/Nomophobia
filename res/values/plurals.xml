@@ -17,5 +17,8 @@
         <item quantity="one">1 second</item>
         <item quantity="other">%d seconds</item>
     </plurals>
-
+	<plurals name="time">
+	    <item quantity="one">time</item>
+	    <item quantity="other">times</item>
+	</plurals>
 </resources>

@@ -1,4 +1,4 @@
-package com.hannah.phoneaddict.provider;
+package com.hannah.nomophobia.provider;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -9,12 +9,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.hannah.phoneaddict.R;
-import com.hannah.phoneaddict.activity.OverviewActivity;
-import com.hannah.phoneaddict.service.ScreenDetectionService;
-import com.hannah.phoneaddict.utility.TimeFomatUtility;
+import com.hannah.nomophobia.R;
+import com.hannah.nomophobia.activity.OverviewActivity;
+import com.hannah.nomophobia.service.ScreenDetectionService;
+import com.hannah.nomophobia.utility.TimeFomatUtility;
 
-public class PhoneAddictWidgetProvider extends AppWidgetProvider {
+public class WidgetProvider extends AppWidgetProvider {
 
 	private static long screenOffTimeInMillis = System.currentTimeMillis();
 
@@ -36,7 +36,7 @@ public class PhoneAddictWidgetProvider extends AppWidgetProvider {
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, overviewIntent, 0);
 		
 		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-		ComponentName widgetName = new ComponentName(context, PhoneAddictWidgetProvider.class);
+		ComponentName widgetName = new ComponentName(context, WidgetProvider.class);
 		
 		widgetViews.setOnClickPendingIntent(R.id.wiget_layout, pendingIntent);
 		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
@@ -55,7 +55,7 @@ public class PhoneAddictWidgetProvider extends AppWidgetProvider {
 
 	private void updateWidget(Context context) {
 		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-		ComponentName widgetName = new ComponentName(context, PhoneAddictWidgetProvider.class);
+		ComponentName widgetName = new ComponentName(context, WidgetProvider.class);
 
 		long currentTimeInMillis = System.currentTimeMillis();
 		long timeDiffInMillis = currentTimeInMillis - screenOffTimeInMillis;

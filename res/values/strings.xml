@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PhoneAddictWidget</string>
+    <string name="app_name">Nomophobia</string>
     <string name="you_lasted">You lasted</string>
     <string name="since_your_last_phone_check">since checking your phone</string>
     <string name="addiction_overview">Addiction Overview</string>

@@ -1,11 +1,11 @@
-package com.hannah.phoneaddict.utility;
+package com.hannah.nomophobia.utility;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import android.content.Context;
 
-import com.hannah.phoneaddict.R;
+import com.hannah.nomophobia.R;
 
 public class TimeFomatUtility {
 

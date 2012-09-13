@@ -1,4 +1,4 @@
-package com.hannah.phoneaddict.provider;
+package com.hannah.nomophobia.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class DurationsContentProvider extends ContentProvider {
 
-	public static final String AUTHORITY = "com.hannah.phoneaddict.provider.durations";
+	public static final String AUTHORITY = "com.hannah.nomophobia.provider.durations";
 
 	private DatabaseHelper mDatabaseHelper;
 

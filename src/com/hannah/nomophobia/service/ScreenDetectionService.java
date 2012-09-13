@@ -1,6 +1,6 @@
-package com.hannah.phoneaddict.service;
+package com.hannah.nomophobia.service;
 
-import com.hannah.phoneaddict.provider.PhoneAddictWidgetProvider;
+import com.hannah.nomophobia.provider.WidgetProvider;
 
 import android.app.Service;
 import android.content.Intent;
@@ -21,7 +21,7 @@ public class ScreenDetectionService extends Service {
 		IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 		intentFilter.addAction(Intent.ACTION_SCREEN_ON);
 
-		PhoneAddictWidgetProvider widgetReceiver = new PhoneAddictWidgetProvider();
+		WidgetProvider widgetReceiver = new WidgetProvider();
 		registerReceiver(widgetReceiver, intentFilter);
 	}
 }

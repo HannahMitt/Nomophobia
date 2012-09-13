@@ -1,4 +1,4 @@
-package com.hannah.phoneaddict.activity;
+package com.hannah.nomophobia.activity;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hannah.phoneaddict.R;
-import com.hannah.phoneaddict.provider.DurationsContentProvider;
-import com.hannah.phoneaddict.utility.TimeFomatUtility;
+import com.hannah.nomophobia.R;
+import com.hannah.nomophobia.provider.DurationsContentProvider;
+import com.hannah.nomophobia.utility.TimeFomatUtility;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphView.GraphViewSeries;

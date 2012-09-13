@@ -73,7 +73,7 @@ public class OverviewActivity extends Activity {
 
 		while (dataCursor.moveToNext()) {
 			x = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_TIME));
-			y = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_DURATION) / 1000) / 60.0;
+			y = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_DURATION) / (double)TimeFomatUtility.MILLIS_IN_A_MINUTE);
 			graphData.add(new GraphViewData(x, y));
 		}
 
@@ -91,10 +91,14 @@ public class OverviewActivity extends Activity {
 						if ((mCurrentTimeInMillis - getMinX(false)) < TimeFomatUtility.MILLIS_IN_AN_HOUR) {
 							return TimeFomatUtility.displayMinutesAgoToTheMinute(timeAgoInMillis);
 						} else {
-							return TimeFomatUtility.displayHoursAgoToQuarterHour(timeAgoInMillis);
+							return TimeFomatUtility.displayHoursAgoToTheTenth(timeAgoInMillis);
 						}
 					} else {
-						return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(value) + " m";
+						if (value < 60) {
+							return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(value) + " m";
+						} else {
+							return TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(value / TimeFomatUtility.MINUTES_IN_AN_HOUR) + " hr";
+						}
 					}
 				}
 
@@ -102,14 +106,14 @@ public class OverviewActivity extends Activity {
 				protected double getMaxY() {
 					double viewPortMax = super.getMaxY();
 
-					if(viewPortMax < 2){
+					if (viewPortMax < 2) {
 						return 2;
 					} else if (viewPortMax < 4) {
 						return 4;
 					} else if (viewPortMax < 20) {
 						return 20;
 					} else {
-						return 60;
+						return viewPortMax;
 					}
 				}
 

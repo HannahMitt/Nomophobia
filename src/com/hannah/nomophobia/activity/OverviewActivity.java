@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentProviderClient;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +29,11 @@ public class OverviewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		// Use the current time at creation
 		mCurrentTimeInMillis = System.currentTimeMillis();
@@ -73,7 +82,7 @@ public class OverviewActivity extends Activity {
 
 		while (dataCursor.moveToNext()) {
 			x = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_TIME));
-			y = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_DURATION) / (double)TimeFomatUtility.MILLIS_IN_A_MINUTE);
+			y = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_DURATION) / (double) TimeFomatUtility.MILLIS_IN_A_MINUTE);
 			graphData.add(new GraphViewData(x, y));
 		}
 
@@ -128,5 +137,33 @@ public class OverviewActivity extends Activity {
 			LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
 			layout.addView(graphView);
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.layout.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.share:
+			Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+			shareIntent.setType("text/plain");
+			shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, getShareMessage());
+			startActivity(Intent.createChooser(shareIntent, getString(R.string.share_via)));
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private String getShareMessage() {
+		int phoneChecksInTimePeriod = phoneChecksInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY);
+		String averageTime = TimeFomatUtility.formatTime(this, averageIgnoreDurationInTimePeriod(TimeFomatUtility.MILLIS_IN_A_DAY));
+		return "Nomophobia Android app record: checked phone " + phoneChecksInTimePeriod + " times in the last 24 hours with an average time between checks of " + averageTime;
 	}
 }

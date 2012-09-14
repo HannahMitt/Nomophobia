@@ -10,5 +10,6 @@
     <string name="in_the_last_24_hours">in the last 24 hours</string>
     <string name="with_an_average_time_between_checking_of">with an average time between checks of</string>
     <string name="graph_title">Graph of Phone Addiction</string>
+    <string name="share_via">Share via</string>
 
 </resources>

@@ -39,6 +39,12 @@ public class OverviewActivity extends Activity {
 		setTextFields();
 		showGraph();
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		DatabaseUtility.clearOldData(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY);
+	}
 
 	private void setTextFields() {
 		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(mPhoneChecks) + " " + getResources().getQuantityString(R.plurals.time, mPhoneChecks);

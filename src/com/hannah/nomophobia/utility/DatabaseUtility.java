@@ -28,4 +28,11 @@ public class DatabaseUtility {
 
 		return context.getContentResolver().query(DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[] { selectionTime }, null);
 	}
+	
+	public static void clearOldData(Context context, long currentTimeMillis, long timePeriod){
+		String selectionTime = String.valueOf(currentTimeMillis - timePeriod);
+		String where = DurationsContentProvider.Contract.Columns.TIME + " < ?";
+		
+		context.getContentResolver().delete(DurationsContentProvider.Contract.CONTENT_URI, where, new String[] {selectionTime});
+	}
 }

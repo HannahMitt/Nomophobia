@@ -3,7 +3,7 @@
     android:id="@+id/wiget_layout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="@dimen/widget_margin"
     android:background="@drawable/widget_button"
     android:gravity="center"
     android:orientation="vertical"

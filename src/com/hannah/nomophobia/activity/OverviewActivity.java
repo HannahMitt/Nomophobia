@@ -81,7 +81,7 @@ public class OverviewActivity extends Activity {
 
 			GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
 
-			GraphView graphView = new LineGraphView(this, "Phone Addiction Over Time") {
+			GraphView graphView = new LineGraphView(this, getString(R.string.graph_title)) {
 
 				@Override
 				protected String formatLabel(double value, boolean isValueX) {

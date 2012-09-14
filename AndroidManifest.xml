@@ -5,7 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"/>
+        android:minSdkVersion="10"
+        android:targetSdkVersion="14" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -32,9 +33,7 @@
                 android:resource="@xml/addict_widget_provider" />
         </receiver>
 
-        <activity
-            android:name="com.hannah.nomophobia.activity.OverviewActivity"
-            android:label="@string/addiction_overview"/>
+        <activity android:name="com.hannah.nomophobia.activity.OverviewActivity" />
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ public class OverviewActivity extends Activity {
 	private long mCurrentTimeInMillis;
 	private int mPhoneChecks;
 	private double mAverageIgnoreTime;
+	private long mLongestTimeAgoMillis;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,15 @@ public class OverviewActivity extends Activity {
 		mPhoneChecks = DatabaseUtility.phoneChecksInTimePeriod(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY);
 		mAverageIgnoreTime = DatabaseUtility.averageIgnoreDurationInTimePeriod(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY);
 
+		long oldestCheckValue = DatabaseUtility.oldestCheckValue(this);
+		if (oldestCheckValue > 0) {
+			mLongestTimeAgoMillis = mCurrentTimeInMillis - oldestCheckValue;
+		}
+
 		setTextFields();
 		showGraph();
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -49,6 +55,9 @@ public class OverviewActivity extends Activity {
 	private void setTextFields() {
 		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(mPhoneChecks) + " " + getResources().getQuantityString(R.plurals.time, mPhoneChecks);
 		((TextView) findViewById(R.id.checks_in_timeperiod)).setText(checksIn24Hours);
+
+		String timeperiod = String.format(getString(R.string.in_the_last_timeperiod), TimeFomatUtility.formatTime(this, mLongestTimeAgoMillis));
+		((TextView) findViewById(R.id.timeperiod)).setText(timeperiod);
 
 		String averageCheckTime = TimeFomatUtility.formatTime(this, mAverageIgnoreTime);
 		((TextView) findViewById(R.id.average_check_time)).setText(averageCheckTime);

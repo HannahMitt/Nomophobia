@@ -25,11 +25,11 @@
             android:gravity="center" />
 
         <TextView
+            android:id="@+id/timeperiod"
             style="@style/small_overview_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/in_the_last_24_hours" />
+            android:gravity="right"/>
 
         <TextView
             style="@style/small_overview_text"

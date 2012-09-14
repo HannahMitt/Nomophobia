@@ -165,4 +165,14 @@ public class DurationsContentProvider extends ContentProvider {
 
 		return sum;
 	}
+	
+	public long minColumn(String column, int columnIndex) {
+		Cursor cursor = mDatabaseHelper.getReadableDatabase().rawQuery("SELECT MIN(" + column + ") FROM " + DatabaseHelper.TABLE_NAME, null);
+		cursor.moveToFirst();
+		long min = cursor.getLong(0);
+		cursor.close();
+		cursor.deactivate();
+
+		return min;
+	}
 }

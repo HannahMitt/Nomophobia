@@ -22,6 +22,15 @@ public class DatabaseUtility {
 		return cursorForTimePeriod(context, currentTimeMillis, timePeriod).getCount();
 	}
 	
+	public static long oldestCheckValue(Context context){
+		ContentProviderClient client = context.getContentResolver().acquireContentProviderClient(DurationsContentProvider.AUTHORITY);
+		DurationsContentProvider durationsContentProvider = (DurationsContentProvider) client.getLocalContentProvider();
+
+		long minColumn = durationsContentProvider.minColumn(DurationsContentProvider.Contract.Columns.TIME, DurationsContentProvider.Contract.Columns.INDEX_TIME);
+
+		return minColumn;
+	}
+	
 	public static Cursor cursorForTimePeriod(Context context, long currentTimeMillis, long timePeriod) {
 		String selectionTime = String.valueOf(currentTimeMillis - timePeriod);
 		String selection = DurationsContentProvider.Contract.Columns.TIME + " > ?";

@@ -11,5 +11,6 @@
     <string name="with_an_average_time_between_checking_of">with an average time between checks of</string>
     <string name="graph_title">Graph of Phone Addiction</string>
     <string name="share_via">Share via</string>
+    <string name="share_message" formatted="false">Nomophobia Android app record: checked phone %s  in the last 24 hours with an average time between checks of %s</string>
 
 </resources>

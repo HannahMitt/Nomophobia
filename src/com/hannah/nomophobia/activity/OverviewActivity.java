@@ -49,14 +49,14 @@ public class OverviewActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		DatabaseUtility.clearOldData(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY);
+		DatabaseUtility.clearOldData(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY * 2);
 	}
 
 	private void setTextFields() {
 		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(mPhoneChecks) + " " + getResources().getQuantityString(R.plurals.time, mPhoneChecks);
 		((TextView) findViewById(R.id.checks_in_timeperiod)).setText(checksIn24Hours);
 
-		String timeperiod = String.format(getString(R.string.in_the_last_timeperiod), TimeFomatUtility.formatTime(this, mLongestTimeAgoMillis));
+		String timeperiod = String.format(getString(R.string.in_the_last_timeperiod), TimeFomatUtility.displayClosestHour(mLongestTimeAgoMillis));
 		((TextView) findViewById(R.id.timeperiod)).setText(timeperiod);
 
 		String averageCheckTime = TimeFomatUtility.formatTime(this, mAverageIgnoreTime);
@@ -99,6 +99,7 @@ public class OverviewActivity extends Activity {
 		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(mPhoneChecks) + " " + getResources().getQuantityString(R.plurals.time, mPhoneChecks);
 
 		String averageTime = TimeFomatUtility.formatTime(this, mAverageIgnoreTime);
-		return String.format(getString(R.string.share_message), checksIn24Hours, averageTime);
+		String timePeriod = TimeFomatUtility.displayClosestHour(mLongestTimeAgoMillis);
+		return String.format(getString(R.string.share_message), checksIn24Hours, timePeriod, averageTime);
 	}
 }

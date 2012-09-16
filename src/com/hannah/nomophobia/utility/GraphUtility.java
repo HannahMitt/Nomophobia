@@ -14,6 +14,8 @@ import com.jjoe64.graphview.LineGraphView;
 
 public class GraphUtility {
 
+	private static final int MAX_Y_IN_MINS = 60;
+	
 	public static GraphView getGraphOfTimes(Context context, long currentTimeMillis, long graphTimePeriod) {
 		ArrayList<GraphViewData> graphData = new ArrayList<GraphView.GraphViewData>();
 
@@ -33,7 +35,7 @@ public class GraphUtility {
 			GraphViewSeries exampleSeries = new GraphViewSeries(graphData.toArray(new GraphViewData[graphData.size()]));
 			GraphView graphView = getLineGraphView(context, currentTimeMillis);
 			graphView.addSeries(exampleSeries);
-			
+
 			// graphView.setViewPort(mCurrentTimeInMillis - graphTimePeriod,
 			// graphData.size());
 			// graphView.setScrollable(true);
@@ -44,8 +46,8 @@ public class GraphUtility {
 			return null;
 		}
 	}
-	
-	private static GraphView getLineGraphView(Context context, final long currentTimeMillis){
+
+	private static GraphView getLineGraphView(Context context, final long currentTimeMillis) {
 		return new LineGraphView(context, context.getString(R.string.graph_title)) {
 
 			@Override
@@ -68,6 +70,11 @@ public class GraphUtility {
 			}
 
 			@Override
+			protected double getMinY() {
+				return 0;
+			}
+			
+			@Override
 			protected double getMaxY() {
 				double viewPortMax = super.getMaxY();
 
@@ -77,9 +84,16 @@ public class GraphUtility {
 					return 4;
 				} else if (viewPortMax < 20) {
 					return 20;
+				} else if (viewPortMax > MAX_Y_IN_MINS) {
+					return MAX_Y_IN_MINS;
 				} else {
 					return viewPortMax;
 				}
+			}
+			
+			@Override
+			protected double getMaxX(boolean ignoreViewport) {
+				return currentTimeMillis;
 			}
 
 		};

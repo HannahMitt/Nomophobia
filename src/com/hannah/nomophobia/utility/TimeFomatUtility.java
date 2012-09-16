@@ -60,6 +60,18 @@ public class TimeFomatUtility {
 		return formattedTime;
 	}
 	
+	public static String displayClosestHour(double timeAgoInMillis){
+		double hours = timeAgoInMillis / MILLIS_IN_AN_HOUR;
+		
+		if(hours < 1){
+			return "hour";
+		} else if (hours > 23){
+			return "24 hours";
+		} else {
+			return (int) Math.round(hours) + " hours";
+		}
+	}
+	
 	public static String displayHoursAgoToTheTenth(double timeAgoInMillis){
 		double fractionalHours = (timeAgoInMillis / MILLIS_IN_AN_HOUR) * 10.0;
 		double hours = Math.round(fractionalHours) / 10.0;

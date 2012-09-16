@@ -21,6 +21,8 @@ public class OverviewActivity extends Activity {
 	private int mPhoneChecks;
 	private double mAverageIgnoreTime;
 	private long mLongestTimeAgoMillis;
+	
+	private GraphView mGraphView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +67,16 @@ public class OverviewActivity extends Activity {
 
 	private void showGraph() {
 
-		GraphView graphView = GraphUtility.getGraphOfTimes(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_12_HOURS);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
+		
+		if(mGraphView != null){
+			layout.removeView(mGraphView);
+		}
+		
+		mGraphView = GraphUtility.getGraphOfTimes(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_12_HOURS);
 
-		if (graphView != null) {
-			LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
-			layout.addView(graphView);
+		if (mGraphView != null) {
+			layout.addView(mGraphView);
 		}
 	}
 

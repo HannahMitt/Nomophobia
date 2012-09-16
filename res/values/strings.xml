@@ -12,5 +12,9 @@
     <string name="graph_title">Graph of Phone Addiction</string>
     <string name="share_via">Share via</string>
     <string name="share_message" formatted="false">Nomophobia Android app record: checked phone %s  in the last %s with an average time between checks of %s</string>
+    <string name="about">About</string>
+    <string name="hannah_text">Developed by Hannah Mittelstaedt</string>
+    <string name="noah_text">Designed by Noah Brown</string>
+    <string name="email">Email</string>
 
 </resources>

@@ -97,6 +97,10 @@ public class OverviewActivity extends Activity {
 			startActivity(Intent.createChooser(shareIntent, getString(R.string.share_via)));
 			return true;
 
+		case R.id.about:
+			startActivity(new Intent(this, AboutActivity.class));
+			return true;
+			
 		default:
 			return super.onOptionsItemSelected(item);
 		}

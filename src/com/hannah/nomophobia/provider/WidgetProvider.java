@@ -18,9 +18,13 @@ import com.hannah.nomophobia.utility.TimeFomatUtility;
 public class WidgetProvider extends AppWidgetProvider {
 
 	@Override
+	public void onEnabled(Context context) {
+		startScreenDetectionService(context);
+		addOnClickIntent(context);
+	}
+	
+	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-		super.onUpdate(context, appWidgetManager, appWidgetIds);
-
 		startScreenDetectionService(context);
 		addOnClickIntent(context);
 	}
@@ -32,6 +36,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
 	private void addOnClickIntent(Context context) {
 		Intent overviewIntent = new Intent(context, OverviewActivity.class);
+		overviewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, overviewIntent, 0);
 
 		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);

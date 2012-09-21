@@ -161,7 +161,6 @@ public class DurationsContentProvider extends ContentProvider {
 		cursor.moveToFirst();
 		long sum = cursor.getLong(0);
 		cursor.close();
-		cursor.deactivate();
 
 		return sum;
 	}
@@ -171,7 +170,6 @@ public class DurationsContentProvider extends ContentProvider {
 		cursor.moveToFirst();
 		long min = cursor.getLong(0);
 		cursor.close();
-		cursor.deactivate();
 
 		return min;
 	}

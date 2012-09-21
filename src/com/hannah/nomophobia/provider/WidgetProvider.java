@@ -18,32 +18,14 @@ import com.hannah.nomophobia.utility.TimeFomatUtility;
 public class WidgetProvider extends AppWidgetProvider {
 
 	@Override
-	public void onEnabled(Context context) {
-		startScreenDetectionService(context);
-		addOnClickIntent(context);
-	}
-	
-	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		startScreenDetectionService(context);
-		addOnClickIntent(context);
+		updateWidget(context);
 	}
 
 	private void startScreenDetectionService(Context context) {
 		Intent serviceIntent = new Intent(context.getApplicationContext(), ScreenDetectionService.class);
 		context.startService(serviceIntent);
-	}
-
-	private void addOnClickIntent(Context context) {
-		Intent overviewIntent = new Intent(context, OverviewActivity.class);
-		overviewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, overviewIntent, 0);
-
-		RemoteViews widgetViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-		ComponentName widgetName = new ComponentName(context, WidgetProvider.class);
-
-		widgetViews.setOnClickPendingIntent(R.id.wiget_layout, pendingIntent);
-		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
 	}
 
 	@Override
@@ -74,6 +56,13 @@ public class WidgetProvider extends AppWidgetProvider {
 		}
 
 		widgetViews.setTextViewText(R.id.time_since_check, TimeFomatUtility.formatTime(context, timeDiffInMillis));
+		widgetViews.setOnClickPendingIntent(R.id.wiget_layout, getOnClickIntent(context));
 		AppWidgetManager.getInstance(context).updateAppWidget(widgetName, widgetViews);
+	}
+	
+	private PendingIntent getOnClickIntent(Context context) {
+		Intent overviewIntent = new Intent(context, OverviewActivity.class);
+		overviewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return PendingIntent.getActivity(context, 0, overviewIntent, 0);
 	}
 }

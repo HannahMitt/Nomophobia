@@ -1,83 +1,42 @@
 package com.hannah.nomophobia.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.hannah.nomophobia.R;
+import com.hannah.nomophobia.provider.StatisticsSingleton;
 import com.hannah.nomophobia.utility.DatabaseUtility;
-import com.hannah.nomophobia.utility.GraphUtility;
 import com.hannah.nomophobia.utility.TimeFomatUtility;
-import com.jjoe64.graphview.GraphView;
 
-public class OverviewActivity extends Activity {
-
-	private long mCurrentTimeInMillis;
-	private int mPhoneChecks;
-	private double mAverageIgnoreTime;
-	private long mLongestTimeAgoMillis;
-	
-	private GraphView mGraphView;
+public class OverviewActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
+
+		ViewPager pager = (ViewPager) findViewById(R.id.pager);
+		pager.setAdapter(new NomophobiaFragmentAdapter(getSupportFragmentManager()));
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-
-		// Use the current time at creation
-		mCurrentTimeInMillis = System.currentTimeMillis();
-		mPhoneChecks = DatabaseUtility.phoneChecksInTimePeriod(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY);
-		mAverageIgnoreTime = DatabaseUtility.averageIgnoreDurationInTimePeriod(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY);
-
-		long oldestCheckValue = DatabaseUtility.oldestCheckValue(this);
-		if (oldestCheckValue > 0) {
-			mLongestTimeAgoMillis = mCurrentTimeInMillis - oldestCheckValue;
-		}
-
-		setTextFields();
-		showGraph();
+		StatisticsSingleton.updateStatistics(this);
 	}
-
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		DatabaseUtility.clearOldData(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_A_DAY * 2);
-	}
-
-	private void setTextFields() {
-		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(mPhoneChecks) + " " + getResources().getQuantityString(R.plurals.time, mPhoneChecks);
-		((TextView) findViewById(R.id.checks_in_timeperiod)).setText(checksIn24Hours);
-
-		String timeperiod = String.format(getString(R.string.in_the_last_timeperiod), TimeFomatUtility.displayClosestHour(mLongestTimeAgoMillis));
-		((TextView) findViewById(R.id.timeperiod)).setText(timeperiod);
-
-		String averageCheckTime = TimeFomatUtility.formatTime(this, mAverageIgnoreTime);
-		((TextView) findViewById(R.id.average_check_time)).setText(averageCheckTime);
-	}
-
-	private void showGraph() {
-
-		FrameLayout layout = (FrameLayout) findViewById(R.id.graph_frame);
-		
-		if(mGraphView != null){
-			layout.removeView(mGraphView);
-		}
-		
-		mGraphView = GraphUtility.getGraphOfTimes(this, mCurrentTimeInMillis, TimeFomatUtility.MILLIS_IN_12_HOURS);
-
-		if (mGraphView != null) {
-			layout.addView(mGraphView);
-		}
+		DatabaseUtility.clearOldData(this, StatisticsSingleton.getCurrentTime(), TimeFomatUtility.MILLIS_IN_A_DAY * 2);
 	}
 
 	@Override
@@ -100,17 +59,40 @@ public class OverviewActivity extends Activity {
 		case R.id.about:
 			startActivity(new Intent(this, AboutActivity.class));
 			return true;
-			
+
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
 	private String getShareMessage() {
-		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(mPhoneChecks) + " " + getResources().getQuantityString(R.plurals.time, mPhoneChecks);
+		int phoneChecks = StatisticsSingleton.getPhoneChecks();
+		String checksIn24Hours = TimeFomatUtility.AVERAGE_DOUBLE_FORMAT.format(phoneChecks) + " " + getResources().getQuantityString(R.plurals.time, phoneChecks);
 
-		String averageTime = TimeFomatUtility.formatTime(this, mAverageIgnoreTime);
-		String timePeriod = TimeFomatUtility.displayClosestHour(mLongestTimeAgoMillis);
+		String averageTime = TimeFomatUtility.formatTime(this, StatisticsSingleton.getAverageIgnoreTime());
+		String timePeriod = TimeFomatUtility.displayClosestHour(StatisticsSingleton.getLongestTimeAge());
 		return String.format(getString(R.string.share_message), checksIn24Hours, timePeriod, averageTime);
+	}
+
+	class NomophobiaFragmentAdapter extends FragmentPagerAdapter {
+
+		public NomophobiaFragmentAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int arg0) {
+			if (arg0 == 0) {
+				return Fragment.instantiate(OverviewActivity.this, StatisticsFragment.class.getName());
+			} else {
+				return Fragment.instantiate(OverviewActivity.this, StatisticsFragment.class.getName());
+			}
+		}
+
+		@Override
+		public int getCount() {
+			return 2;
+		}
+
 	}
 }

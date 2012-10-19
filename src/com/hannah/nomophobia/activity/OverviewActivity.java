@@ -85,7 +85,7 @@ public class OverviewActivity extends FragmentActivity {
 			if (arg0 == 0) {
 				return Fragment.instantiate(OverviewActivity.this, StatisticsFragment.class.getName());
 			} else {
-				return Fragment.instantiate(OverviewActivity.this, StatisticsFragment.class.getName());
+				return Fragment.instantiate(OverviewActivity.this, GraphFragment.class.getName());
 			}
 		}
 

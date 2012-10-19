@@ -21,8 +21,7 @@
             style="@style/highlight_overview_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="247 times" />
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/timeperiod"
@@ -59,10 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp" />
 
-        <FrameLayout
-            android:id="@+id/graph_frame"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
     </LinearLayout>
 
 </ScrollView>

@@ -1,52 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/overview_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/definition_grey"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/title_background"
         android:orientation="vertical"
         android:padding="10dp" >
 
         <TextView
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/you_checked_your_phone" />
+            android:text="@string/nomophobia_caps"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/checks_in_timeperiod"
-            style="@style/highlight_overview_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/timeperiod"
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"/>
-
-        <TextView
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/with_an_average_time_between_checking_of"
-            android:textSize="20sp"
-            android:textStyle="italic" />
-
-        <TextView
-            android:id="@+id/average_check_time"
-            style="@style/highlight_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:layout_marginLeft="10dp"
+            android:text="@string/the_fear_of_being_out_of_mobile_contact"
+            android:textColor="@color/definition_grey"
+            android:textSize="20sp" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/you_checked_your_phone" />
+
+            <TextView
+                android:id="@+id/checks_in_timeperiod"
+                style="@style/highlight_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="247 times" />
+
+            <TextView
+                android:id="@+id/timeperiod"
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/you_last_an_average_of" />
+
+            <TextView
+                android:id="@+id/average_check_time"
+                style="@style/highlight_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/between_checks" />
+
+            <View
+                style="@style/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <FrameLayout
+                android:id="@+id/graph_frame"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

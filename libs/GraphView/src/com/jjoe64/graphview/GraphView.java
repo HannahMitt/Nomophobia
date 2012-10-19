@@ -97,7 +97,7 @@ abstract public class GraphView extends LinearLayout {
 					paint.setTextAlign(Align.RIGHT);
 				if (i==0)
 					paint.setTextAlign(Align.LEFT);
-				paint.setColor(Color.WHITE);
+				paint.setColor(Color.DKGRAY);
 				canvas.drawText(horlabels[i], x, height - 4, paint);
 			}
 
@@ -263,7 +263,7 @@ abstract public class GraphView extends LinearLayout {
 			int vers = verlabels.length - 1;
 			for (int i = 0; i < verlabels.length; i++) {
 				float y = ((graphheight / vers) * i) + border;
-				paint.setColor(Color.WHITE);
+				paint.setColor(Color.DKGRAY);
 				canvas.drawText(verlabels[i], 0, y, paint);
 			}
 		}
@@ -382,7 +382,7 @@ abstract public class GraphView extends LinearLayout {
 			paint.setColor(graphSeries.get(i).style.color);
 			canvas.drawRect(new RectF(lLeft+5, lTop+5+(i*(shapeSize+5)), lLeft+5+shapeSize, lTop+((i+1)*(shapeSize+5))), paint);
 			if (graphSeries.get(i).description != null) {
-				paint.setColor(Color.WHITE);
+				paint.setColor(Color.DKGRAY);
 				paint.setTextAlign(Align.LEFT);
 				canvas.drawText(graphSeries.get(i).description, lLeft+5+shapeSize+5, lTop+shapeSize+(i*(shapeSize+5)), paint);
 			}

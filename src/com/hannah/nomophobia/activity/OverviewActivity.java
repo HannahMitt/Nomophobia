@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.hannah.nomophobia.R;
@@ -67,7 +67,7 @@ public class OverviewActivity extends Activity {
 
 	private void showGraph() {
 
-		LinearLayout layout = (LinearLayout) findViewById(R.id.overview_layout);
+		FrameLayout layout = (FrameLayout) findViewById(R.id.graph_frame);
 		
 		if(mGraphView != null){
 			layout.removeView(mGraphView);

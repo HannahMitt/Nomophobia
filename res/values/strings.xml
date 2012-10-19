@@ -5,7 +5,7 @@
     <string name="you_lasted">You lasted</string>
     <string name="since_your_last_phone_check">since checking your phone</string>
     <string name="addiction_overview">Addiction Overview</string>
-    <string name="you_checked_your_phone">You checked your phone</string>
+    <string name="you_checked_your_phone">You have checked your phone</string>
     <string name="times">times</string>
     <string name="in_the_last_timeperiod" formatted="false">in the last %s</string>
     <string name="with_an_average_time_between_checking_of">with an average time between checks of</string>
@@ -16,5 +16,9 @@
     <string name="hannah_text">Developed by Hannah Mittelstaedt</string>
     <string name="noah_text">Designed by Noah Brown</string>
     <string name="email">Email</string>
+    <string name="nomophobia_caps">NOMOPHOBIA</string>
+    <string name="the_fear_of_being_out_of_mobile_contact">:the fear of being out of mobile contact.</string>
+    <string name="you_last_an_average_of">You last an average of</string>
+    <string name="between_checks">between checks</string>
 
 </resources>

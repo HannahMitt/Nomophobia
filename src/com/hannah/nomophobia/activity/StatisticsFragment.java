@@ -36,5 +36,8 @@ public class StatisticsFragment extends Fragment {
 
 		String averageCheckTime = TimeFomatUtility.formatTime(getActivity(), StatisticsSingleton.getAverageIgnoreTime());
 		((TextView) getView().findViewById(R.id.average_check_time)).setText(averageCheckTime);
+		
+		String longestIgnoreTime = TimeFomatUtility.formatTime(getActivity(), StatisticsSingleton.getLongestIgnoreTime());
+		((TextView) getView().findViewById(R.id.longest_ignore_time)).setText(longestIgnoreTime);
 	}
 }

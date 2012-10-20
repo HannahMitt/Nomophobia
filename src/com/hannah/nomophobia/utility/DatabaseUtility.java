@@ -31,6 +31,15 @@ public class DatabaseUtility {
 		return minColumn;
 	}
 	
+	public static long longestIgnoreValue(Context context){
+		ContentProviderClient client = context.getContentResolver().acquireContentProviderClient(DurationsContentProvider.AUTHORITY);
+		DurationsContentProvider durationsContentProvider = (DurationsContentProvider) client.getLocalContentProvider();
+
+		long maxColumn = durationsContentProvider.maxColumn(DurationsContentProvider.Contract.Columns.DURATION, DurationsContentProvider.Contract.Columns.INDEX_TIME);
+
+		return maxColumn;
+	}
+	
 	public static Cursor cursorForTimePeriod(Context context, long currentTimeMillis, long timePeriod) {
 		String selectionTime = String.valueOf(currentTimeMillis - timePeriod);
 		String selection = DurationsContentProvider.Contract.Columns.TIME + " > ?";

@@ -19,13 +19,11 @@
         android:id="@+id/time_since_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:shadowColor="@android:color/black"
-        android:shadowDy="1"
-        android:shadowRadius="1"
         android:text="No time"
         android:textColor="@color/time_color"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+        android:typeface="monospace"/>
 
     <TextView
         style="@style/text"

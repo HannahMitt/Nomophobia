@@ -57,6 +57,25 @@
             style="@style/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
+        
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/the_longest_you_have_gone_is" />
+
+        <TextView
+            android:id="@+id/longest_ignore_time"
+            style="@style/highlight_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+        
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/without_checking" />
 
     </LinearLayout>
 

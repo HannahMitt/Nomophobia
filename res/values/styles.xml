@@ -2,7 +2,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="text">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/text_grey</item>
         <item name="android:textSize">13sp</item>
     </style>
     <style name="small_overview_text">

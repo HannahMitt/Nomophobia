@@ -84,7 +84,7 @@ public class OverviewActivity extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		DatabaseUtility.clearOldData(this, StatisticsSingleton.getCurrentTime(), TimeFomatUtility.MILLIS_IN_A_DAY * 2);
+		DatabaseUtility.clearOldData(this, StatisticsSingleton.getCurrentTime(), (long) (TimeFomatUtility.MILLIS_IN_A_DAY * 1.5));
 	}
 
 	@Override

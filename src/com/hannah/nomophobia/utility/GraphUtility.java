@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.hannah.nomophobia.R;
 import com.hannah.nomophobia.provider.DurationsContentProvider;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
@@ -48,7 +47,7 @@ public class GraphUtility {
 	}
 
 	private static GraphView getLineGraphView(Context context, final long currentTimeMillis) {
-		return new LineGraphView(context, context.getString(R.string.graph_title)) {
+		return new LineGraphView(context, "") {
 
 			@Override
 			protected String formatLabel(double value, boolean isValueX) {

@@ -173,4 +173,13 @@ public class DurationsContentProvider extends ContentProvider {
 
 		return min;
 	}
+	
+	public long maxColumn(String column, int columnIndex) {
+		Cursor cursor = mDatabaseHelper.getReadableDatabase().rawQuery("SELECT MAX(" + column + ") FROM " + DatabaseHelper.TABLE_NAME, null);
+		cursor.moveToFirst();
+		long min = cursor.getLong(0);
+		cursor.close();
+
+		return min;
+	}
 }

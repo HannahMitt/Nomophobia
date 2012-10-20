@@ -11,7 +11,7 @@
     <string name="with_an_average_time_between_checking_of">with an average time between checks of</string>
     <string name="graph_title">Graph of Phone Addiction</string>
     <string name="share_via">Share via</string>
-    <string name="share_message" formatted="false">Nomophobia Android app record: checked phone %s  in the last %s with an average time between checks of %s</string>
+    <string name="share_message" formatted="false">Nomophobia Android app stats: checked phone %s  in the last %s with an average time between checks of %s</string>
     <string name="about">About</string>
     <string name="hannah_text">Developed by Hannah Mittelstaedt</string>
     <string name="noah_text">Designed by Noah Brown</string>
@@ -22,5 +22,8 @@
     <string name="between_checks">between checks</string>
     <string name="statistics">Stats</string>
     <string name="graph">Graph</string>
+    <string name="graph_of_phone_addiction">Graph of Phone Addiction</string>
+    <string name="the_longest_you_have_gone_is">The longest you have gone is</string>
+    <string name="without_checking">without checking</string>
 
 </resources>

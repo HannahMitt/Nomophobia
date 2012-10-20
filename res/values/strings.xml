@@ -20,5 +20,7 @@
     <string name="the_fear_of_being_out_of_mobile_contact">:the fear of being out of mobile contact.</string>
     <string name="you_last_an_average_of">You last an average of</string>
     <string name="between_checks">between checks</string>
+    <string name="statistics">Stats</string>
+    <string name="graph">Graph</string>
 
 </resources>

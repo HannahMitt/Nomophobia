@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/definition_grey"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="10dp">
 
     <FrameLayout
         android:id="@+id/graph_frame"

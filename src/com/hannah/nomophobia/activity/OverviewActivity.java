@@ -7,9 +7,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.hannah.nomophobia.R;
 import com.hannah.nomophobia.provider.StatisticsSingleton;
@@ -22,9 +26,53 @@ public class OverviewActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
+		setUpTabs();
+	}
 
-		ViewPager pager = (ViewPager) findViewById(R.id.pager);
+	private void setUpTabs() {
+		final Button statsTab = (Button) findViewById(R.id.stats_tab);
+		final Button graphTab = (Button) findViewById(R.id.graph_tab);
+		statsTab.setSelected(true);
+
+		final ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(new NomophobiaFragmentAdapter(getSupportFragmentManager()));
+		pager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int arg0) {
+				if (arg0 == 0) {
+					graphTab.setSelected(false);
+					statsTab.setSelected(true);
+				} else {
+					graphTab.setSelected(true);
+					statsTab.setSelected(false);
+				}
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
+
+		statsTab.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				pager.setCurrentItem(0);
+			}
+		});
+
+		graphTab.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				pager.setCurrentItem(1);
+			}
+		});
 	}
 
 	@Override
@@ -32,7 +80,7 @@ public class OverviewActivity extends FragmentActivity {
 		super.onResume();
 		StatisticsSingleton.updateStatistics(this);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -93,6 +141,5 @@ public class OverviewActivity extends FragmentActivity {
 		public int getCount() {
 			return 2;
 		}
-
 	}
 }

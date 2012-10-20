@@ -1,6 +1,7 @@
 package com.hannah.nomophobia.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.hannah.nomophobia.R;
 import com.hannah.nomophobia.provider.StatisticsSingleton;
@@ -26,6 +28,13 @@ public class OverviewActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
+		
+		Typeface typeface = Typeface.createFromAsset(getAssets(), "Market_Deco.ttf");
+		((TextView)findViewById(R.id.nomophobia)).setTypeface(typeface, Typeface.BOLD);
+		
+		typeface = Typeface.createFromAsset(getAssets(), "Ubuntu-Title.ttf");
+		((TextView)findViewById(R.id.definition)).setTypeface(typeface, Typeface.BOLD);
+		
 		setUpTabs();
 	}
 

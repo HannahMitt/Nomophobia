@@ -13,6 +13,7 @@
         android:padding="10dp" >
 
         <TextView
+            android:id="@+id/nomophobia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nomophobia_caps"
@@ -21,12 +22,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/definition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="@string/the_fear_of_being_out_of_mobile_contact"
             android:textColor="@color/definition_grey"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

@@ -47,6 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableRight="@drawable/phone_icn_selector"
             android:text="@string/statistics" />
 
         <View
@@ -62,6 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableRight="@drawable/graph_icn_selector"
             android:text="@string/graph" />
     </LinearLayout>
 

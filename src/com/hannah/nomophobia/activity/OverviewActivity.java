@@ -1,5 +1,6 @@
 package com.hannah.nomophobia.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -28,14 +29,15 @@ public class OverviewActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
-		
+
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "Market_Deco.ttf");
-		((TextView)findViewById(R.id.nomophobia)).setTypeface(typeface, Typeface.BOLD);
-		
+		((TextView) findViewById(R.id.nomophobia)).setTypeface(typeface, Typeface.BOLD);
+
 		typeface = Typeface.createFromAsset(getAssets(), "Ubuntu-Title.ttf");
-		((TextView)findViewById(R.id.definition)).setTypeface(typeface, Typeface.BOLD);
-		
+		((TextView) findViewById(R.id.definition)).setTypeface(typeface, Typeface.BOLD);
+
 		setUpTabs();
+		setUpMenu();
 	}
 
 	private void setUpTabs() {
@@ -82,6 +84,23 @@ public class OverviewActivity extends FragmentActivity {
 				pager.setCurrentItem(1);
 			}
 		});
+	}
+
+	@SuppressLint("NewApi")
+	private void setUpMenu() {
+		View menuButton = findViewById(R.id.menu_button);
+
+		if (android.os.Build.VERSION.SDK_INT >= 14 && android.view.ViewConfiguration.get(this).hasPermanentMenuKey()) {
+			menuButton.setVisibility(View.GONE);
+		} else {
+			menuButton.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					openOptionsMenu();
+				}
+			});
+		}
 	}
 
 	@Override

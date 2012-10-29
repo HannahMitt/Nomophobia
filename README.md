@@ -9,7 +9,7 @@ This widget uses a service to watch when the screen is turned on and off, and in
 
 Developed By
 ===================
-* Hannah Mittelstaedt - hannahmittel@gmail.com
+* Hannah Mittelstaedt - hannahmittel@gmail.com - https://twitter.com/hannahmitt
 
 Designed By
 ===================

@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.hannah.nomophobia.R;
@@ -34,15 +33,15 @@ public class OverviewActivity extends FragmentActivity {
 		((TextView) findViewById(R.id.nomophobia)).setTypeface(typeface, Typeface.BOLD);
 
 		typeface = Typeface.createFromAsset(getAssets(), "Ubuntu-Title.ttf");
-		((TextView) findViewById(R.id.definition)).setTypeface(typeface, Typeface.BOLD);
+		((TextView) findViewById(R.id.definition)).setTypeface(typeface);
 
 		setUpTabs();
 		setUpMenu();
 	}
 
 	private void setUpTabs() {
-		final Button statsTab = (Button) findViewById(R.id.stats_tab);
-		final Button graphTab = (Button) findViewById(R.id.graph_tab);
+		final View statsTab = findViewById(R.id.stats_tab);
+		final View graphTab = findViewById(R.id.graph_tab);
 		statsTab.setSelected(true);
 
 		final ViewPager pager = (ViewPager) findViewById(R.id.pager);

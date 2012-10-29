@@ -11,7 +11,7 @@
     <string name="with_an_average_time_between_checking_of">with an average time between checks of</string>
     <string name="graph_title">Graph of Phone Addiction</string>
     <string name="share_via">Share via</string>
-    <string name="share_message" formatted="false">Nomophobia Android app stats: checked phone %s  in the last %s with an average time between checks of %s</string>
+    <string name="share_message" formatted="false">Nomophobia stats: checked phone %s  in the last %s with an average time between checks of %s play.google.com/store/apps/details?id=com.hannah.nomophobia</string>
     <string name="about">About</string>
     <string name="hannah_text">Developed by Hannah Mittelstaedt</string>
     <string name="noah_text">Designed by Noah Brown</string>

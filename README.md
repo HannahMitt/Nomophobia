@@ -7,6 +7,8 @@ This widget uses a service to watch when the screen is turned on and off, and in
 
 **Feel free to adapt the source but please do not release an identically functioning app, or reuse the launcher icon.**
 
+Google Play: https://play.google.com/store/apps/details?id=com.hannah.nomophobia
+
 Developed By
 ===================
 * Hannah Mittelstaedt - hannahmittel@gmail.com - https://twitter.com/hannahmitt

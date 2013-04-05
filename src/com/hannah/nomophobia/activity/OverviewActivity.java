@@ -134,6 +134,10 @@ public class OverviewActivity extends FragmentActivity {
 		case R.id.about:
 			startActivity(new Intent(this, AboutActivity.class));
 			return true;
+			
+		case R.id.timeline:
+			startActivity(new Intent(this, TimelineFragment.class));
+			return true;
 
 		default:
 			return super.onOptionsItemSelected(item);

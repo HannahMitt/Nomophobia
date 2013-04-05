@@ -36,6 +36,7 @@
         </receiver>
 
         <activity android:name="com.hannah.nomophobia.activity.OverviewActivity" />
+        <activity android:name="com.hannah.nomophobia.activity.TimelineFragment" />
         <activity
             android:name="com.hannah.nomophobia.activity.AboutActivity"
             android:theme="@style/DialogTheme" 

@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="widget_margin">6dp</dimen>
+    <dimen name="time_cell_height">100dp</dimen>
 
 </resources>

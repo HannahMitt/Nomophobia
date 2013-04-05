@@ -3,5 +3,7 @@
 
     <dimen name="widget_margin">6dp</dimen>
     <dimen name="time_cell_height">100dp</dimen>
+    <dimen name="time_cell_width">120dp</dimen>
+    <dimen name="time_line_width">1dp</dimen>
 
 </resources>

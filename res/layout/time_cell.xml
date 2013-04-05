@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/top_title_blue"
-    android:orientation="horizontal" >
+    android:background="@color/top_title_blue">
 
     <View
         android:layout_width="1dp"
@@ -12,7 +11,8 @@
 
     <TextView
         android:id="@+id/hour_text"
-        android:layout_width="120dp"
-        android:layout_height="100dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="6:00"/>
 
-</LinearLayout>
+</RelativeLayout>

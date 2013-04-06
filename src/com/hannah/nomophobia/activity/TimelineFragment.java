@@ -3,6 +3,7 @@ package com.hannah.nomophobia.activity;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -11,6 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hannah.nomophobia.R;
+import com.hannah.nomophobia.provider.DurationsContentProvider;
+import com.hannah.nomophobia.utility.DatabaseUtility;
 import com.hannah.nomophobia.view.TimeMarkerView;
 
 public class TimelineFragment extends Activity {
@@ -56,12 +59,26 @@ public class TimelineFragment extends Activity {
 		TextView hourText = (TextView) timecell.findViewById(R.id.hour_text);
 		hourText.setText(timeCalc.get(Calendar.HOUR) + ":00");
 
-		addTimeMarker(timecell);
+		addTimeMarker(timeCalc, timecell);
 
 		return timecell;
 	}
 
-	private void addTimeMarker(RelativeLayout timecell) {
-		timecell.addView(new TimeMarkerView(this, 5));
+	private void addTimeMarker(Calendar timeCalc, RelativeLayout timecell) {
+		Calendar startTime = (Calendar) timeCalc.clone();
+		startTime.set(Calendar.MINUTE, 0);
+		startTime.set(Calendar.SECOND, 0);
+		Calendar endTime = (Calendar) startTime.clone();
+		endTime.add(Calendar.HOUR, 1);
+
+		long x;
+		Calendar xDate = Calendar.getInstance();
+
+		Cursor dataCursor = DatabaseUtility.cursorForTimeWindow(this, startTime.getTimeInMillis(), endTime.getTimeInMillis());
+		while (dataCursor.moveToNext()) {
+			x = (dataCursor.getLong(DurationsContentProvider.Contract.Columns.INDEX_TIME));
+			xDate.setTimeInMillis(x);
+			timecell.addView(new TimeMarkerView(this, xDate.get(Calendar.MINUTE)));
+		}
 	}
 }

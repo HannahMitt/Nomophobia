@@ -47,6 +47,12 @@ public class DatabaseUtility {
 		return context.getContentResolver().query(DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[] { selectionTime }, null);
 	}
 	
+	public static Cursor cursorForTimeWindow(Context context, long timePeriodStart, long timePeriodEnd) {
+		String selection = DurationsContentProvider.Contract.Columns.TIME + " > ? AND " + DurationsContentProvider.Contract.Columns.TIME + " < ?";
+
+		return context.getContentResolver().query(DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[] { timePeriodStart + "", timePeriodEnd + "" }, null);
+	}
+	
 	public static void clearOldData(Context context, long currentTimeMillis, long timePeriod){
 		String selectionTime = String.valueOf(currentTimeMillis - timePeriod);
 		String where = DurationsContentProvider.Contract.Columns.TIME + " < ?";

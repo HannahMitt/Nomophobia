@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="time_color">#4E899F</color>
+    <color name="time_color">#5789BB</color>
     <color name="definition_grey">#D7D7D7</color>
     <color name="button_text_grey">#B0B0B0</color>
     <color name="text_grey">#7C7C7C</color>
@@ -9,5 +9,6 @@
     <color name="bottom_title_blue">#4A7BA3</color>
     <color name="top_title_blue">#679ADA</color>
     <color name="center_title_blue">#5789BB</color>
-
+    <color name="background">#EEEEEE</color>
+	<color name="widget_background">#EEFFFFFF</color>
 </resources>

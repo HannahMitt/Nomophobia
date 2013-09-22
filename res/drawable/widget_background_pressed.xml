@@ -2,12 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
 
-    <solid android:color="#D7D7D7" />
+    <solid android:color="@color/widget_background" />
 
     <stroke
         android:width="2dp"
-        android:color="@color/top_title_blue" />
+        android:color="@color/time_color" />
 
-    <corners android:radius="5dp" />
+    <corners android:radius="@dimen/widget_corner_radius" />
 
 </shape>

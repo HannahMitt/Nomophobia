@@ -32,9 +32,6 @@ public class OverviewActivity extends FragmentActivity {
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "Market_Deco.ttf");
 		((TextView) findViewById(R.id.nomophobia)).setTypeface(typeface, Typeface.BOLD);
 
-		typeface = Typeface.createFromAsset(getAssets(), "Ubuntu-Title.ttf");
-		((TextView) findViewById(R.id.definition)).setTypeface(typeface);
-
 		setUpTabs();
 		setUpMenu();
 	}

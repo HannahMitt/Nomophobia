@@ -4,6 +4,7 @@
     <style name="NomophobiaTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/NomophobiaTheme.ActionBar</item>
         <item name="android:actionBarTabStyle">@style/NomophobiaTheme.TabStyle</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 
     <style name="DialogTheme" parent="@android:style/Theme.Holo.Light.Dialog" />

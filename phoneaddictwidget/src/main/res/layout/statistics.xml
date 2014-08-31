@@ -1,81 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="@dimen/view_padding">
 
-        <TextView
-            style="@style/small_overview_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/you_checked_your_phone" />
+            android:orientation="vertical"
+            android:padding="@dimen/card_internal_padding"
+            android:background="@drawable/card">
 
-        <TextView
-            android:id="@+id/checks_in_timeperiod"
-            style="@style/highlight_overview_text"
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/you_checked_your_phone" />
+
+            <TextView
+                android:id="@+id/checks_in_timeperiod"
+                style="@style/highlight_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/timeperiod"
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:orientation="vertical"
+            android:padding="@dimen/card_internal_padding"
+            android:background="@drawable/card">
 
-        <TextView
-            android:id="@+id/timeperiod"
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/you_last_an_average_of" />
 
-        <View
-            style="@style/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            <TextView
+                android:id="@+id/average_check_time"
+                style="@style/highlight_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
 
-        <TextView
-            style="@style/small_overview_text"
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/between_checks" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/you_last_an_average_of" />
+            android:orientation="vertical"
+            android:padding="@dimen/card_internal_padding"
+            android:background="@drawable/card">
 
-        <TextView
-            android:id="@+id/average_check_time"
-            style="@style/highlight_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" />
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/the_longest_you_have_gone_is" />
 
-        <TextView
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/between_checks" />
+            <TextView
+                android:id="@+id/longest_ignore_time"
+                style="@style/highlight_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
 
-        <View
-            style="@style/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-        
-        <TextView
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/the_longest_you_have_gone_is" />
-
-        <TextView
-            android:id="@+id/longest_ignore_time"
-            style="@style/highlight_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" />
-        
-        <TextView
-            style="@style/small_overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/without_checking" />
+            <TextView
+                style="@style/small_overview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/without_checking" />
+        </LinearLayout>
 
     </LinearLayout>
 

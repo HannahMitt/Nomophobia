@@ -3,7 +3,7 @@
 
     <color name="time_color">#5789BB</color>
     <color name="definition_grey">#D7D7D7</color>
-    <color name="tab_line_grey">#B0B0B0</color>
+    <color name="tab_line">@android:color/white</color>
     <color name="tab_grey">#7C7C7C</color>
     <color name="tab_selected">@color/darker_text_grey</color>
     <color name="darker_text_grey">#666666</color>
@@ -13,4 +13,11 @@
     <color name="background">#EEEEEE</color>
 	<color name="widget_background">#CCFFFFFF</color>
 	<color name="widget_background_pressed">#CCD9E9F5</color>
+
+    <!-- CARD -->
+    <color name="transparent">#00000000</color>
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="card_detailing">#eee</color>
 </resources>

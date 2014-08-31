@@ -25,8 +25,4 @@
         <item name="android:gravity">center</item>
         <item name="android:orientation">horizontal</item>
     </style>
-    <style name="tab_text" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/button_text</item>
-        <item name="android:textSize">20dp</item>
-    </style>
 </resources>

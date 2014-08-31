@@ -10,5 +10,6 @@
     <color name="top_title_blue">#679ADA</color>
     <color name="center_title_blue">#5789BB</color>
     <color name="background">#EEEEEE</color>
-	<color name="widget_background">#EEFFFFFF</color>
+	<color name="widget_background">#CCFFFFFF</color>
+	<color name="widget_background_pressed">#CCD9E9F5</color>
 </resources>

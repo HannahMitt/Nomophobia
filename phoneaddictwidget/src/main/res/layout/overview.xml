@@ -7,65 +7,6 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/text_grey"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/stats_tab"
-            style="@style/bottom_tab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                style="@style/tab_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/statistics" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/phone_icn_selector" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/graph_tab"
-            style="@style/bottom_tab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                style="@style/tab_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/graph" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/graph_icn_selector" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/menu_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/button_background"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/menu_icn_selector" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

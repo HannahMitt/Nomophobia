@@ -1,7 +1,7 @@
 package com.hannah.nomophobia.activity;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,8 +13,6 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 import com.hannah.nomophobia.R;
 import com.hannah.nomophobia.provider.StatisticsSingleton;
@@ -32,14 +30,11 @@ public class OverviewActivity extends FragmentActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(TypefaceUtility.getTypeFaceSpan(this, getString(R.string.app_name)));
 
-        setUpTabs();
-        setUpMenu();
+        setUpTabs(actionBar);
     }
 
-    private void setUpTabs() {
-        final View statsTab = findViewById(R.id.stats_tab);
-        final View graphTab = findViewById(R.id.graph_tab);
-        statsTab.setSelected(true);
+    private void setUpTabs(final ActionBar actionBar) {
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new NomophobiaFragmentAdapter(getSupportFragmentManager()));
@@ -47,13 +42,7 @@ public class OverviewActivity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int arg0) {
-                if (arg0 == 0) {
-                    graphTab.setSelected(false);
-                    statsTab.setSelected(true);
-                } else {
-                    graphTab.setSelected(true);
-                    statsTab.setSelected(false);
-                }
+                actionBar.setSelectedNavigationItem(arg0);
             }
 
             @Override
@@ -65,38 +54,21 @@ public class OverviewActivity extends FragmentActivity {
             }
         });
 
-        statsTab.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                pager.setCurrentItem(0);
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                pager.setCurrentItem(tab.getPosition());
             }
-        });
 
-        graphTab.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                pager.setCurrentItem(1);
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
             }
-        });
-    }
 
-    @SuppressLint("NewApi")
-    private void setUpMenu() {
-        View menuButton = findViewById(R.id.menu_button);
+            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+            }
+        };
 
-        if (android.os.Build.VERSION.SDK_INT >= 14 && android.view.ViewConfiguration.get(this).hasPermanentMenuKey()) {
-            menuButton.setVisibility(View.GONE);
-        } else {
-            menuButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    openOptionsMenu();
-                }
-            });
-        }
+        actionBar.addTab(actionBar.newTab().setText(R.string.statistics).setTabListener(tabListener));
+        actionBar.addTab(actionBar.newTab().setText(R.string.graph).setTabListener(tabListener));
+        actionBar.setSelectedNavigationItem(0);
     }
 
     @Override

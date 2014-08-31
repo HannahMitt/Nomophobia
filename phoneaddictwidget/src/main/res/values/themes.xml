@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="NomophobiaTheme" parent="@android:style/Theme.Holo.Light.NoActionBar" />
+
+    <style name="NomophobiaTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/NomophobiaTheme.ActionBar</item>
+    </style>
+
     <style name="DialogTheme" parent="@android:style/Theme.Holo.Light.Dialog" />
+
+    <style name="NomophobiaTheme.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/time_color</item>
+        <item name="android:titleTextStyle">@style/NomophobiaTheme.TextStyle</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="android:logo">@android:color/transparent</item>
+    </style>
+
+    <style name="NomophobiaTheme.TextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/actionbar_text</item>
+    </style>
 </resources>

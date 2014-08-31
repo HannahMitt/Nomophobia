@@ -3,5 +3,6 @@
 
     <dimen name="widget_margin">0dp</dimen>
     <dimen name="widget_corner_radius">0dp</dimen>
+    <dimen name="actionbar_text">18sp</dimen>
 
 </resources>

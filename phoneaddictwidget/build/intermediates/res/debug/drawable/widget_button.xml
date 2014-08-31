@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@drawable/widget_background_pressed" android:state_pressed="true"/>
-    <item android:drawable="@drawable/widget_background"/>
-
-</selector><!-- From: file:/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/src/main/res/drawable/widget_button.xml -->

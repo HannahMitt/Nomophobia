@@ -3,6 +3,6 @@
 
     <item android:color="@color/definition_grey" android:state_pressed="true"/>
     <item android:color="@color/definition_grey" android:state_selected="true"/>
-    <item android:color="@color/button_text_grey"/>
+    <item android:color="@color/tab_line_grey"/>
 
 </selector>

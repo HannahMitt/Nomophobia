@@ -3,6 +3,7 @@
 
     <style name="NomophobiaTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/NomophobiaTheme.ActionBar</item>
+        <item name="android:actionBarTabStyle">@style/NomophobiaTheme.TabStyle</item>
     </style>
 
     <style name="DialogTheme" parent="@android:style/Theme.Holo.Light.Dialog" />
@@ -12,9 +13,16 @@
         <item name="android:titleTextStyle">@style/NomophobiaTheme.TextStyle</item>
         <item name="android:icon">@android:color/transparent</item>
         <item name="android:logo">@android:color/transparent</item>
+        <item name="android:backgroundStacked">@drawable/tab_background</item>
     </style>
 
     <style name="NomophobiaTheme.TextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/actionbar_text</item>
+    </style>
+
+    <style name="NomophobiaTheme.TabStyle" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_background</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/actionbar_text</item>
     </style>

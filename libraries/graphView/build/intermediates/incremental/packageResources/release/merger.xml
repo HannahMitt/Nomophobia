@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="main" >
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/main/res" >
+            <file
+                name="icon"
+                path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/main/res/drawable-hdpi/icon.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="icon"
+                path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/main/res/drawable-ldpi/icon.png"
+                qualifiers="ldpi-v4"
+                type="drawable" />
+            <file
+                name="icon"
+                path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/main/res/drawable-mdpi/icon.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="main"
+                path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/main/res/layout/main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/main/res/values/strings.xml"
+                qualifiers="" >
+                <string name="app_name" >GraphView
+                </string>
+                <string name="hello" >Hello World!
+                </string>
+            </file>
+        </source>
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/build/generated/res/rs/release" />
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/build/generated/res/generated/release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/libraries/graphView/src/release/res" />
+    </dataSet>
+
+</merger>

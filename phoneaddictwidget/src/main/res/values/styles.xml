@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="text">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/darker_text_grey</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="small_overview_text">
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+    <style name="highlight_overview_text">
+        <item name="android:textColor">@color/time_color</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="divider">
+        <item name="android:background">@color/time_color</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+    <style name="bottom_tab">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="tab_text" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/button_text</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+</resources>

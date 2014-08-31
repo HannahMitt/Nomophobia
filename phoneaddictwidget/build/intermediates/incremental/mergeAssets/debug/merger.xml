@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="20.0.0" >
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/assets" />
+    </dataSet>
+    <dataSet config="unspecified" >
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/exploded-aar/Nomophobia.libraries/graphView/unspecified/assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/src/main/assets" >
+            <file
+                name="Market_Deco.ttf"
+                path="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/src/main/assets/Market_Deco.ttf" />
+        </source>
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/src/debug/assets" />
+    </dataSet>
+
+</merger>

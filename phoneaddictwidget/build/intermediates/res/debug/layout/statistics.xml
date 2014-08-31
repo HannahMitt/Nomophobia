@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/you_checked_your_phone" />
+
+        <TextView
+            android:id="@+id/checks_in_timeperiod"
+            style="@style/highlight_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/timeperiod"
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/you_last_an_average_of" />
+
+        <TextView
+            android:id="@+id/average_check_time"
+            style="@style/highlight_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/between_checks" />
+
+        <View
+            style="@style/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/the_longest_you_have_gone_is" />
+
+        <TextView
+            android:id="@+id/longest_ignore_time"
+            style="@style/highlight_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+        
+        <TextView
+            style="@style/small_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/without_checking" />
+
+    </LinearLayout>
+
+</ScrollView><!-- From: file:/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/src/main/res/layout/statistics.xml -->

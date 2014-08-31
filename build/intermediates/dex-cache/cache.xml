@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-aa4c9edfcd6c216e3293c3e359c0ff5a86afad0a.jar"
+        jar="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-bca9cd8c8082330ef7549e0398af852faae531fd.jar"
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/pre-dexed/debug/classes-e8a2ea38bd136e0a05cd5c131e6e38ab254deb18.jar"
+        jar="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/exploded-aar/Nomophobia.libraries/graphView/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="59242191e3f6d166dc69ba1acea08f6acaee9353"/>
+    <item
+        dex="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/pre-dexed/debug/classes-376ca63a51293ab03a3b6925660b106b844fee4a.jar"
+        jar="/Users/HannahMitt/development/Android/Nomophobia/phoneaddictwidget/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-99d0068636398b7d7033066418039319ae32c42c.jar"
+        jar="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/pre-dexed/debug/classes-c846ef2f3c7434f9c0f41392a75662a1b9207787.jar"
+        jar="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/exploded-aar/NomophobiaAS.libraries/graphView/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="279da27a4d67c898c00f445c9b67c6c05b57c289"/>
+    <item
+        dex="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/pre-dexed/debug/classes-5ded2cab21a7cef3ca5f74d70740889c3c32031d.jar"
+        jar="/Users/HannahMitt/development/Android/NomophobiaAS/phoneaddictwidget/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+
+</pre-dex-items>

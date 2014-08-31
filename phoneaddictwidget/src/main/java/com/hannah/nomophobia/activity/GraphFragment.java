@@ -23,6 +23,8 @@ public class GraphFragment extends Fragment implements LoaderManager.LoaderCallb
     private static final String TAG = "GraphFragment";
     private static final int LOADER_ID = 0;
 
+    private long mSelectionTime;
+
     private ImageView mCircleGraphView;
     private ClockVisual mClockVisual;
 
@@ -38,30 +40,26 @@ public class GraphFragment extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mClockVisual = new ClockVisual();
+        mClockVisual = new ClockVisual(getResources());
         mCircleGraphView.setImageDrawable(mClockVisual);
+
+        mSelectionTime = StatisticsSingleton.getCurrentTime() - ClockVisual.CLOCK_MILLIS;
         getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String selectionTime = String.valueOf(StatisticsSingleton.getCurrentTime() - TimeFomatUtility.MILLIS_IN_12_HOURS);
         String selection = DurationsContentProvider.Contract.Columns.TIME + " > ?";
-        return new CursorLoader(getActivity(), DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[]{selectionTime}, null);
+        return new CursorLoader(getActivity(), DurationsContentProvider.Contract.CONTENT_URI, null, selection, new String[]{String.valueOf(mSelectionTime)}, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mClockVisual.setCursor(data);
+        mClockVisual.setCursor(data, mSelectionTime);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        mClockVisual.setCursor(null);
+        mClockVisual.setCursor(null, 0);
     }
 }

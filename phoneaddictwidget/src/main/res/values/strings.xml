@@ -25,5 +25,6 @@
     <string name="graph_of_phone_addiction">Graph of Phone Addiction</string>
     <string name="the_longest_you_have_gone_is">The longest you have gone is</string>
     <string name="without_checking">without checking</string>
+    <string name="hrs_ago">%s hrs ago</string>
 
 </resources>

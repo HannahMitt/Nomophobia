@@ -8,6 +8,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
 import com.hannah.nomophobia.R;
@@ -28,6 +29,11 @@ public class ClockVisual extends Drawable {
 
     private Paint mBackgroundPaint;
     private Paint mEventPaint;
+    private Paint mTextPaint;
+    private Rect mTxtRect = new Rect();
+
+    private String mSixHoursAgo;
+    private String mThreeHoursAgo;
 
     private Cursor mTimesCursor;
     private long mClockStart;
@@ -41,7 +47,17 @@ public class ClockVisual extends Drawable {
         mEventPaint = new Paint();
         mEventPaint.setColor(resources.getColor(R.color.top_title_blue));
         mEventPaint.setAntiAlias(true);
-        mEventPaint.setStyle(Paint.Style.FILL);
+        mEventPaint.setStyle(Paint.Style.STROKE);
+        mEventPaint.setStrokeWidth(resources.getDimensionPixelOffset(R.dimen.graph_line_width));
+
+        mTextPaint = new Paint();
+        mTextPaint.setColor(resources.getColor(R.color.darker_text_grey));
+        mTextPaint.setTextSize(resources.getDimension(R.dimen.graph_text_size));
+        mTextPaint.setTypeface(Typeface.DEFAULT);
+        mTextPaint.setAntiAlias(true);
+
+        mSixHoursAgo = resources.getString(R.string.hrs_ago, 6);
+        mThreeHoursAgo = resources.getString(R.string.hrs_ago, 3);
     }
 
     public void setCursor(Cursor cursor, long startTime) {
@@ -61,10 +77,10 @@ public class ClockVisual extends Drawable {
 
         Rect bounds = getBounds();
         width = bounds.right - bounds.left;
-        height = bounds.bottom - bounds.top;
+        height = bounds.bottom - bounds.top - (4 * mTextPaint.getTextSize());
         radius = Math.min(width, height) / 2;
         centerX = radius;
-        centerY = radius;
+        centerY = radius + (2 * mTextPaint.getTextSize());
 
         canvas.drawCircle(centerX, centerY, radius, mBackgroundPaint);
 
@@ -78,6 +94,21 @@ public class ClockVisual extends Drawable {
                 drawLine(canvas, radius, centerX, centerY, timeInMillis);
             }
         }
+
+        addTimeText(canvas, centerX, centerY, radius);
+    }
+
+    private void addTimeText(Canvas canvas, float centerX, float centerY, float radius) {
+        mTextPaint.getTextBounds(mSixHoursAgo, 0, mSixHoursAgo.length(), mTxtRect);
+        float textHeight = mTxtRect.bottom - mTxtRect.top;
+        float textWidth = mTxtRect.right - mTxtRect.left;
+        float textX = centerX - (textWidth / 2);
+        canvas.drawText(mSixHoursAgo, textX, textHeight, mTextPaint);
+
+        mTextPaint.getTextBounds(mThreeHoursAgo, 0, mThreeHoursAgo.length(), mTxtRect);
+        textWidth = mTxtRect.right - mTxtRect.left;
+        textX = centerX - (textWidth / 2);
+        canvas.drawText(mThreeHoursAgo, textX, centerY + radius + (2 * textHeight), mTextPaint);
     }
 
     private void drawLine(Canvas canvas, float radius, float centerX, float centerY, double timeInMillis) {

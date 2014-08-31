@@ -6,5 +6,7 @@
     <dimen name="view_padding">8dp</dimen>
     <dimen name="card_internal_padding">18dp</dimen>
     <dimen name="actionbar_text">18sp</dimen>
+    <dimen name="graph_line_width">1dp</dimen>
+    <dimen name="graph_text_size">14sp</dimen>
 
 </resources>

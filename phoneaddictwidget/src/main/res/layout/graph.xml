@@ -9,22 +9,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/view_padding">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_margin="@dimen/view_padding"
             android:gravity="center"
             android:text="@string/graph_of_phone_addiction"
             android:textColor="@color/tab_grey"
             android:textSize="18dp" />
 
-        <FrameLayout
-            android:id="@+id/graph_frame"
+        <ImageView
+            android:id="@+id/graph_circle"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/view_padding"/>
     </LinearLayout>
 
 </ScrollView>

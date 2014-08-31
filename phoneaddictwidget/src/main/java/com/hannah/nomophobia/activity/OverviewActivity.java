@@ -1,15 +1,14 @@
 package com.hannah.nomophobia.activity;
 
 import android.app.ActionBar;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,8 +36,8 @@ public class OverviewActivity extends FragmentActivity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new NomophobiaFragmentAdapter(getSupportFragmentManager()));
-        pager.setOnPageChangeListener(new OnPageChangeListener() {
+        pager.setAdapter(new NomophobiaFragmentAdapter(getFragmentManager()));
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int arg0) {
@@ -86,7 +85,7 @@ public class OverviewActivity extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.layout.menu, menu);
+        menuInflater.inflate(R.menu.main, menu);
         return true;
     }
 

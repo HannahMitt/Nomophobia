@@ -1,8 +1,8 @@
 package com.hannah.nomophobia.activity;
 
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.hannah.nomophobia.R;
 import com.hannah.nomophobia.provider.StatisticsSingleton;
-import com.hannah.nomophobia.utility.NomoLog;
 import com.hannah.nomophobia.utility.TimeFomatUtility;
 
 public class StatisticsFragment extends Fragment {
@@ -22,7 +21,7 @@ public class StatisticsFragment extends Fragment {
 		View view = inflater.inflate(R.layout.statistics, container, false);
 		return view;
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
